@@ -2,9 +2,9 @@
 
 Bot for votting up steam screenshotes, artworks, guides, videos, workshop items.
 
-![GitHub followers](https://img.shields.io/github/followers/Dasrg?label=Follow&style=social)
-![https://streamlabs.com/das-Dme6dF/tip](https://img.shields.io/badge/Donate-%241-red) 
-![nodejs.org](https://img.shields.io/badge/node.js-v12-brightgreen)
+[![GitHub followers](https://img.shields.io/github/followers/Dasrg?label=Follow&style=social)](https://github.com/Dasrg)
+[![streamlabs](https://img.shields.io/badge/Donate-%241-red)](https://streamlabs.com/das-Dme6dF/tip)
+[![nodejs](https://img.shields.io/badge/node.js-v12-brightgreen)](https://nodejs.org/)
 
 <b>Installing:</b>
 1. Install <a href="https://nodejs.org/">Node.js LTS version</a>
