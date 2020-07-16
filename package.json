@@ -1,0 +1,23 @@
+{
+  "name": "steam-rateup-bot",
+  "version": "1.0.0",
+  "description": "Bot for votting up screenshotes, artworks, guides, videos, workshop items.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "github.com/Dasrg",
+  "license": "ISC",
+  repository": {
+    "type": "git",
+    "url": "https://github.com/Dasrg/steam-rateup-bot.git"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "colors": "^1.4.0",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "steam-totp": "^2.1.1",
+    "steamcommunity": "^3.41.6"
+  }
+}

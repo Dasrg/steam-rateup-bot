@@ -1,0 +1,5 @@
+{
+	"id": "SteamContentID",
+	"perChunk": 5,
+	"betweenChunks": 10000
+}
