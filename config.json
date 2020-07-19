@@ -3,6 +3,6 @@
 	"perChunk": 3,
 	"betweenChunks": 15000,
 	"likes": true,
-	"favorites": true,
+	"favorites": false,
 	"appid": "730"
 }
