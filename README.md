@@ -1,6 +1,6 @@
 <h1>Steam rate up bot</h1>
 
-Bot for votting up steam screenshotes, artworks, guides, videos, workshop items.
+Bot for like and favorite steam screenshotes, artworks, guides, videos, workshop items.
 
 [![GitHub followers](https://img.shields.io/github/followers/Dasrg?label=Follow&style=social)](https://github.com/Dasrg)
 [![streamlabs](https://img.shields.io/badge/Donate-%241-red)](https://streamlabs.com/das-Dme6dF/tip)
@@ -14,14 +14,17 @@ Bot for votting up steam screenshotes, artworks, guides, videos, workshop items.
 
 <b>Using:</b>
 1. Add to the `bot.txt` textfile accounts login data (`login:password:shared_secret` in the each line). Your need to use steam accounts without any restrictions ($5 spend).
-2. In the `config.json` set id of the content (your content link: "steamcommunity.com/sharedfiles/filedetails/?id=<b>XXXXXXXXXXX"</b>, enter in the config <b>XXXXXXXXXXX</b>). Set the `perChunk` and `betweenChunks` parameters.
+2. In the `config.json` set id of the content (your content link: "steamcommunity.com/sharedfiles/filedetails/?id=<b>XXXXXXXXXXX"</b>, enter in the config <b>XXXXXXXXXXX</b>). Set the `perChunk` and `betweenChunks` parameters. If you want to favorite count boost set `"favorites": true` and enter `appid` (for CS:GO Artworks `"appid": 767`)
 
 Config example:
 ```
 {
-	"id": "1234567890",
-	"perChunk": 5,  
-	"betweenChunks": 10000
+	"id": "2164876148",
+	"perChunk": 3,
+	"betweenChunks": 15000,
+	"likes": true,
+	"favorites": false,
+	"appid": "730"
 }
 ```
 
