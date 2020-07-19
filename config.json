@@ -1,8 +1,9 @@
 {
 	"id": "2164876148",
-	"perChunk": 3,
-	"betweenChunks": 15000,
+	"perChunk": 1,
+	"betweenChunks": 5000,
 	"likes": true,
-	"favorites": false,
-	"appid": "730"
+	"favorites": true,
+	"appid": "730",
+	"limited": false
 }
