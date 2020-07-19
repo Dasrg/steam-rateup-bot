@@ -18,21 +18,28 @@ const betweenChunks = config.betweenChunks;
 
 console.log('%s is steam content ID'.gray, id);
 
-var ss = 0;
-var ff = 0;
-
+var allSuccessLikes = 0;
+var allFailedLikes = 0;
+var allSentFavorites = 0;
 
 (async() => {
+	// Getting chunks:
     let subbot = []; 
     for (let i = 0; i <Math.ceil(bot.length/perChunk); i++){
         subbot[i] = bot.slice((i*perChunk), (i*perChunk) + perChunk);
     }
+	
 	console.log('Total %s accounts and %s chunks'.cyan, bot.length, subbot.length);
+	if (config.favorites == false) console.log('Likes: %s, Favorites: %s'.cyan, config.likes, config.favorites);
+	if (config.favorites == true) console.log('Likes: %s, Favorites: %s. Indicated App_ID: %s'.cyan, config.likes, config.favorites, config.appid);
 	for (let ii = 0; ii < subbot.length; ii++) {
-		var s = 0;
-		var f = 0;
+		
+		var successLikes = 0;
+		var failedLikes = 0;	
+		var sentFavorites = 0;	
+
 		async.each(subbot[ii], function(item, callback){
-			
+			// Splitting each line to login, password, shared_secret:
 			const logOnOptions = {
 				accountName: item.split(":")[0],
 				password: item.split(":")[1],
@@ -45,43 +52,74 @@ var ff = 0;
 				"twoFactorCode": logOnOptions.twoFactorCode
 				},
 				function (err, sessionID, cookies, steamguard, oAuthToken) {
-					if (err) { console.log('[%s] Unable to auth (Error: %s)'.red, logOnOptions.accountName, err); f++; ff++; callback(); }
+					if (err) { console.log('[%s] Unable to auth (Error: %s)'.red, logOnOptions.accountName, err); failedLikes++; allFailedLikes++; callback(); }
 					if (!err) {
+						(async() => {
+											
 						console.log('[%s] Successfully logged on (Session ID: %s)'.yellow, logOnOptions.accountName, sessionID);
-						var options = {
-							formData: {
-								id: id,
-								sessionid: sessionID
-							},
-							headers: {
-								Cookie: cookies,
-								Host: 'steamcommunity.com',
-								Origin: 'https://steamcommunity.com'
-							},
+						var optionsLike = {
+							formData: {	id: id,	sessionid: sessionID },
+							headers: { Cookie: cookies, Host: 'steamcommunity.com', Origin: 'https://steamcommunity.com' },
 							json: true
-						};					
-						community.httpRequestPost(
-							'https://steamcommunity.com/sharedfiles/voteup', options,
-							function (err, res, data) {
-								if (err) {
-									console.log('err', err); f++; ff++;
-								}
-								if (!err) {
-								 if (data.success == 1) { console.log('[%s] Successfully voted up with response code %s'.green, logOnOptions.accountName, data.success); s++; ss++;}
-								 else { console.log('[%s] something went wrong. Response code %s'.red, logOnOptions.accountName, data.success); f++; ff++;}
-								callback();
-								}
-							},
-							"steamcommunity"
-						);
+						};
+						var optionsFavorite = {
+							formData: {	id: id,	appid: config.appid, sessionid: sessionID },
+							headers: { Cookie: cookies, Host: 'steamcommunity.com', Origin: 'https://steamcommunity.com' },
+							json: true
+						};
+						//--------- Getting favorites begin -----------
+						if (config.favorites == true) { 
+							community.httpRequestPost(
+								'https://steamcommunity.com/sharedfiles/favorite', optionsFavorite,
+								function (err, res, data) {
+									if (err) {
+										console.log('[%s] Favorite request successfuly sent'.gray, logOnOptions.accountName); sentFavorites++; allSentFavorites++;
+										
+									}
+									if (!err) {
+										console.log('[%s] Favorite request successfuly sent'.gray, logOnOptions.accountName); sentFavorites++; allSentFavorites++;
+										callback();										
+									}
+									
+								},
+								"steamcommunity"
+							);
+						};		
+						//--------- Getting favorites end -----------		
+
+						//--------- Getting likes begin -----------						
+						if (config.likes == true) {							
+							community.httpRequestPost(
+								'https://steamcommunity.com/sharedfiles/voteup', optionsLike,
+								function (err, res, data) {
+									if (err) {
+										console.log('err', err); failedLikes++; allFailedLikes++;
+									}
+									if (!err) {
+									 if (data.success == 1) { console.log('[%s] Successfully voted up with response code %s'.green, logOnOptions.accountName, data.success); successLikes++; allSuccessLikes++;}
+									 else { console.log('[%s] something went wrong. Response code %s'.red, logOnOptions.accountName, data.success); failedLikes++; allFailedLikes++;}
+									callback();
+									}
+								},
+								"steamcommunity"
+							);
+						}
+						//--------- Getting likes end -----------
+						
+						})();
 					}
 			});				
 		}, function(err) {
-				console.log('Chunk %s finished: Successfully sent %s rates up and %s failed requests'.white, ii + 1, s, f);
+				if (config.likes == true) console.log('Chunk %s finished: Successfully sent %s rates up and %s failed requests'.white, ii + 1, successLikes, failedLikes);
+				if (config.favorites == true) console.log('Chunk %s: Successfuly sent %s favorites request'.gray, ii + 1, sentFavorites);
 				if (ii < subbot.length - 1) console.log('Waiting %s ms for the next chunk'.cyan, betweenChunks);
 		});
 		if (ii < subbot.length) await new Promise(r => setTimeout(r, betweenChunks));
 	};
-	console.log('Successfully sent %s rates up and %s failed requests', ss, ff);
+	if (config.likes == true && config.favorites == true) console.log('Successfully sent %s rates up and %s failed requests. Successfuly sent %s favorites request'.black.bgWhite, allSuccessLikes, allFailedLikes, allSentFavorites)
+	else if (config.likes == true) console.log('Successfully sent %s rates up and %s failed requests'.black.bgWhite, allSuccessLikes, allFailedLikes)
+	else if (config.favorites == true) console.log('Successfuly sent %s favorites request'.black.bgWhite, allSentFavorites);
+	
+	
 })();
 
