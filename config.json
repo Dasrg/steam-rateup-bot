@@ -1,5 +1,8 @@
 {
-	"id": "SteamContentID",
-	"perChunk": 5,
-	"betweenChunks": 10000
+	"id": "2164876148",
+	"perChunk": 3,
+	"betweenChunks": 15000,
+	"likes": true,
+	"favorites": true,
+	"appid": "730"
 }
