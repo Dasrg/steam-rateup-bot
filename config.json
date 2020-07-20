@@ -2,7 +2,7 @@
 	"id": "2164876148",
 	"perChunk": 1,
 	"betweenChunks": 5000,
-	"count": 0,
+	"amount": 0,
 	"likes": true,
 	"favorites": true,
 	"appid": "730",
