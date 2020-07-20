@@ -24,7 +24,7 @@ Config example:
 	"id": "2164876148",
 	"perChunk": 3,
 	"betweenChunks": 15000,
-	"count": 0,
+	"amount": 0,
 	"likes": true,
 	"favorites": false,
 	"appid": "730",
