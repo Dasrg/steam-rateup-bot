@@ -15,7 +15,7 @@ Bot for like and favorite steam screenshotes, artworks, guides, videos, workshop
 <b>Using:</b>
 1. Add to the `bot.txt` textfile accounts login data (`login:password:shared_secret` in the each line). Your need to use steam accounts without any restrictions ($5 spend).
 2. In the `config.json` set id of the content (your content link: "steamcommunity.com/sharedfiles/filedetails/?id=<b>XXXXXXXXXXX"</b>, enter in the config <b>XXXXXXXXXXX</b>). Set the `perChunk` and `betweenChunks` parameters. If you want to favorite count boost set `"favorites": true` and enter `appid` (for CS:GO Artworks `"appid": 767`).
-You can use limited steam accounts with Steam Guard disabled `"limited": false`. <b>Attention:</b> in this case format of `bots.txt`: `login:password:` (with colon in the end of each line).
+You can use limited steam accounts with Steam Guard disabled `"limited": true`. <b>Attention:</b> in this case format of `bots.txt`: `login:password:` (with colon in the end of each line).
 `amount` parameter is number of likes/favorites. If `amount: 0` bot use amount of steam accounts in the `bots.txt`.
 
 Config example:
