@@ -25,7 +25,7 @@ var allSentFavorites = 0;
 (async() => {
 	// Getting chunks:
     let subbot = []; 
-	if (config.count != 0) bot.length = config.count;
+	if (config.amount != 0) bot.length = config.amount;
 	for (let i = 0; i <Math.ceil(bot.length/perChunk); i++){
 		subbot[i] = bot.slice((i*perChunk), (i*perChunk) + perChunk);
 	}
