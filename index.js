@@ -25,9 +25,10 @@ var allSentFavorites = 0;
 (async() => {
 	// Getting chunks:
     let subbot = []; 
-    for (let i = 0; i <Math.ceil(bot.length/perChunk); i++){
-        subbot[i] = bot.slice((i*perChunk), (i*perChunk) + perChunk);
-    }
+	if (config.count != 0) bot.length = config.count;
+	for (let i = 0; i <Math.ceil(bot.length/perChunk); i++){
+		subbot[i] = bot.slice((i*perChunk), (i*perChunk) + perChunk);
+	}
 	
 	console.log('Total %s accounts and %s chunks'.cyan, bot.length, subbot.length);
 	if (config.favorites == false) console.log('Likes: %s, Favorites: %s'.cyan, config.likes, config.favorites);
