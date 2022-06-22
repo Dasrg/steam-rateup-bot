@@ -13,7 +13,7 @@
     "url": "https://github.com/Dasrg/steam-rateup-bot.git"
   },
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "colors": "^1.4.0",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
