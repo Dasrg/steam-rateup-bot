@@ -14,7 +14,7 @@ Bot for like and favorite steam screenshotes, artworks, guides, videos, workshop
 
 <b>Using:</b>
 1. Add to the `bot.txt` textfile accounts login data (`login:password:shared_secret` in the each line). Your need to use steam accounts without any restrictions ($5 spend).
-2. In the `config.json` set id of the content (your content link: "steamcommunity.com/sharedfiles/filedetails/?id=<b>XXXXXXXXXXX"</b>, enter in the config <b>XXXXXXXXXXX</b>). Set the `perChunk` and `betweenChunks` parameters. If you want to favorite count boost set `"favorites": true` and enter `appid` (for CS:GO Artworks `"appid": 767`).
+2. In the `config.js` set id of the content (your content link: "steamcommunity.com/sharedfiles/filedetails/?id=<b>XXXXXXXXXXX"</b>, enter in the config <b>XXXXXXXXXXX</b>). Set the `perChunk` and `betweenChunks` parameters. If you want to favorite count boost set `"favorites": true` and enter `appid` (for CS:GO Artworks `"appid": 767`).
 You can use limited steam accounts with Steam Guard disabled `"limited": true`. <b>Attention:</b> in this case format of `bots.txt`: `login:password:` (with colon in the end of each line).
 `amount` parameter is number of likes/favorites. If `amount: 0` bot use amount of steam accounts in the `bots.txt`.
 
@@ -51,3 +51,5 @@ Config example:
 - I got this error: `[Login] Something went wrong. Response code 112`
 
   - This account has steam community restricton. You need to use unlimited accounts. <a href="https://support.steampowered.com/kb_article.php?ref=3330-iagk-7663">Check more info</a>
+
+<b>Revised by: @them-dev on 24.04.2023</b>
